@@ -1,33 +1,25 @@
 name: Build Prevensso Pro
-
 on:
   push:
     branches: [ main ]
   workflow_dispatch:
-
 jobs:
   build-windows:
     runs-on: windows-latest
-
     steps:
-      - name: Checkout código
+      - name: Checkout
         uses: actions/checkout@v4
-
-      - name: Instalar Node.js v22
+      - name: Node 22
         uses: actions/setup-node@v4
         with:
           node-version: '22'
-
-      - name: Instalar dependencias
+      - name: Install
         run: npm install --legacy-peer-deps
-
-      - name: Compilar instalador Windows
+      - name: Build
         run: npm run build-win
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          ELECTRON_BUILDER_ALLOW_UNRESOLVED_DEPENDENCIES: true
-
-      - name: Subir instalador
+      - name: Upload
         uses: actions/upload-artifact@v4
         with:
           name: Prevensso-Pro-Installer
