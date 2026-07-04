@@ -1,0 +1,76 @@
+{
+  "name": "prevensso-pro",
+  "version": "2.0.0",
+  "description": "Prevensso Pro — Plataforma Integral de Asesoría Empresarial",
+  "main": "main.js",
+  "author": {
+    "name": "Prevensso Pro",
+    "email": "asesorias.prevensso@gmail.com"
+  },
+  "license": "UNLICENSED",
+  "private": true,
+  "scripts": {
+    "start": "electron .",
+    "build-win": "electron-builder --win",
+    "build-mac": "electron-builder --mac",
+    "build-linux": "electron-builder --linux"
+  },
+  "dependencies": {
+    "electron-updater": "^6.1.0"
+  },
+  "devDependencies": {
+    "electron": "^28.0.0",
+    "electron-builder": "^24.0.0"
+  },
+  "build": {
+    "appId": "cl.prevensso.pro",
+    "productName": "Prevensso Pro",
+    "copyright": "© 2025 Prevensso Pro. Todos los derechos reservados.",
+    "publish": {
+      "provider": "github",
+      "owner": "asesoriasprevensso-cmd",
+      "repo": "prevensso-pro-updates"
+    },
+    "directories": {
+      "output": "dist",
+      "buildResources": "build"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "splash.html",
+      "Prevensso_Pro_v2.html",
+      "assets/**/*"
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "assets/icon.ico",
+      "publisherName": "Prevensso Pro"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Prevensso Pro",
+      "include": "build/installer.nsh"
+    },
+    "mac": {
+      "target": "dmg",
+      "icon": "assets/icon.icns",
+      "category": "public.app-category.business"
+    },
+    "linux": {
+      "target": "AppImage",
+      "icon": "assets/icon.png",
+      "category": "Office"
+    }
+  }
+}
